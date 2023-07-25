@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 1rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+.cover-image {
+    position: absolute;   
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+    z-index: 0;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    transform: scale(1.03);
+}
