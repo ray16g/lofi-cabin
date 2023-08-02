@@ -2,7 +2,7 @@ import React from 'react'
 
 const Topbar = () => {
   return (
-    <div>Topbar</div>
+    <div className='topbar'>Lofi Ambience</div>
   )
 }
 
