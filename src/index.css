@@ -4,10 +4,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.star {
-    position: absolute;
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -19,7 +15,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    background: radial-gradient(ellipse at bottom, #19454d 0%, #121f2b 100%);
     overflow: hidden;
 }
 
@@ -42,4 +38,5 @@
 
 .image-container img {
     border: 2px solid rgb(254, 254, 254);
+    box-shadow: 3px 3px 3px black;
 }

@@ -7,11 +7,10 @@ function App() {
 
   return (
     <>
-
       <div className="container">
-      <div className='star' id="stars"></div>
-      <div className='star' id="stars2"></div>
-      <div className='star' id="stars3"></div>
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
         <Topbar/>
         <Image/>
         <Player/>
