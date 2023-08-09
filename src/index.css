@@ -25,6 +25,8 @@
 
 .bottombar {
     flex: intial;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-container {
@@ -38,5 +40,6 @@
 
 .image-container img {
     border: 2px solid rgb(254, 254, 254);
-    box-shadow: 3px 3px 3px black;
+    width: 100%;
+    height: auto;
 }

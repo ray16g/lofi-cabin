@@ -1,5 +1,5 @@
 import Topbar from "./Topbar"
-import Image from "./Image"
-import Player from "./Player"
+import Main from "./Main"
+import Footer from "./Footer"
 
-export { Topbar, Image, Player}
+export { Topbar, Main, Footer}

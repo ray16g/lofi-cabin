@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './index.css'
 import './stars.css'
-import { Image, Player, Topbar } from "./components"
+import { Main, Footer, Topbar } from "./components"
 
 function App() {
 
@@ -12,8 +12,8 @@ function App() {
         <div id="stars2"></div>
         <div id="stars3"></div>
         <Topbar/>
-        <Image/>
-        <Player/>
+        <Main/>
+        <Footer/>
       </div>
     </>
     
