@@ -1,18 +1,19 @@
 import { React, useState} from 'react'
 import ReactPlayer from 'react-player/youtube'
-import {add, music, pause, play, playlist, playNext, playPrev} from "../assets/icons"
+import {add, music, pause, play, playlist, playNext, playPrev, volume1} from "../assets/icons"
 
 const Footer = () => {
 
   const [config, setConfig] = useState({
     playing: true,
-    volume: 1,
+    volume: 0.5,
     played: 0,
-    playedSeconds: 0
+    duration: 0,
+    playedSeconds: 0,
   })
 
   function handleVolume(e) {
-
+    setConfig({...config, volume: parseFloat(e.target.value)})
   }
 
   function handlePlay() {
@@ -36,18 +37,16 @@ const Footer = () => {
   }
 
   function handleProgress(progress) {
-
+    console.log(progress)
   }
 
   function handleDuration(duration) {
-
+    setConfig({...config, duration: duration})
   }
 
   function onPlayerReady(e) {
-    console.log(e)
-    e.target.setShuffle(true)
-    e.target.nextVideo()
-    e.target.playVideo()
+    e.player.player.player.setShuffle(true)
+    e.player.player.player.nextVideo()
   }
 
   return (
@@ -65,7 +64,7 @@ const Footer = () => {
         playbackRate={1}
         volume={config.volume}
         muted={false}
-        onReady={() => console.log('onReady')}
+        onReady={onPlayerReady}
         onStart={() => console.log('onStart')}
         onPlay={handlePlay}
         onPause={handlePause}
@@ -74,15 +73,7 @@ const Footer = () => {
         onError={e => console.log('onError', e)}
         onProgress={handleProgress}
         onDuration={handleDuration}
-        config={{
-          youtube: {
-            embedOptions: {
-              events: {
-                'onReady' : onPlayerReady
-              }
-            }
-          }
-        }}
+
       />
       <div className="background-player">
         Ambience
@@ -102,18 +93,17 @@ const Footer = () => {
         </button>
         <div className="slider"></div>
         <button>
-          <img src={music} alt="Adjust audio" />
+          <img src={volume1} alt="Adjust audio" />
         </button>
+        {config.played}
         <div className="volume-slider">
           <input 
             type="range" 
             min={0} 
-            max={0.999999} 
-            step='any' 
-            value={config.played}
-            // onMouseDown={}
-            // onChange={}
-            // onMouseUp={}          
+            max={1.5} 
+            step={0.02} 
+            value={config.volume}
+            onChange={handleVolume}
           />
         </div>
       </div>
