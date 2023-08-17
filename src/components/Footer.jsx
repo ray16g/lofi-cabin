@@ -1,16 +1,27 @@
-import { React, useState} from 'react'
+import { React, useState, useRef} from 'react'
 import ReactPlayer from 'react-player/youtube'
-import {add, music, pause, play, playlist, playNext, playPrev, volume1} from "../assets/icons"
+import {add, music, pause, play, playlist, playNext, playPrev, volume0, volume1, volume2, volumex} from "../assets/icons"
 
 const Footer = () => {
 
   const [config, setConfig] = useState({
     playing: true,
+    seeking: false,
     volume: 0.5,
     played: 0,
     duration: 0,
-    playedSeconds: 0,
+    muted: false
   })
+
+  const playerRef = useRef(null);
+
+  function toggleMuted() {
+    setConfig({...config, muted: !config.muted})
+  }
+
+  function togglePlay() {
+    setConfig({...config, playing: !config.playing})
+  }
 
   function handleVolume(e) {
     setConfig({...config, volume: parseFloat(e.target.value)})
@@ -25,19 +36,23 @@ const Footer = () => {
   }
 
   function handleSeekUp(e) {
-
+    setConfig({...config, seeking: false})
+    playerRef.current.seekTo(parseFloat(e.target.value))
   }
 
   function handleSeekDown(e) {
-
+    setConfig({...config, seeking: true})  
   }
 
   function handleSeek(e) {
-
+    setConfig({...config, played: parseFloat(e.target.value)})
   }
 
   function handleProgress(progress) {
-    console.log(progress)
+    if(!config.seeking)
+    {
+      setConfig({...config, played: progress.played})
+    }
   }
 
   function handleDuration(duration) {
@@ -49,9 +64,18 @@ const Footer = () => {
     e.player.player.player.nextVideo()
   }
 
+  function handlePrevious() {
+    playerRef.current.player.player.player.previousVideo()
+  }
+
+  function handleNext() {
+    playerRef.current.player.player.player.nextVideo()
+  }
+
   return (
     <div className='footer'>
       <ReactPlayer
+        ref={playerRef}
         className='react-player'
         width='0'
         height='0'
@@ -63,7 +87,7 @@ const Footer = () => {
         loop={false}
         playbackRate={1}
         volume={config.volume}
-        muted={false}
+        muted={config.muted}
         onReady={onPlayerReady}
         onStart={() => console.log('onStart')}
         onPlay={handlePlay}
@@ -81,21 +105,48 @@ const Footer = () => {
           <img src={playlist} alt="Ambience playlist" />
         </button>
       </div>
+
       <div className="main-player">
-        <button>
+        <button onClick={handlePrevious}>
           <img src={playPrev} alt="Play previous" />
         </button>
-        <button>
+
+        <button onClick={togglePlay}>
+          {config.playing ? 
           <img src={pause} alt="Pause" />
+          : 
+          <img src={play} alt="Play" />
+          }
         </button>
-        <button>
+
+        <button onClick={handleNext}>
           <img src={playNext} alt="Play next" />
         </button>
-        <div className="slider"></div>
-        <button>
-          <img src={volume1} alt="Adjust audio" />
+
+        <div className="slider">
+          <input 
+              type="range" 
+              min={0} 
+              max={0.9999} 
+              step='any' 
+              value={config.played}
+              onChange={handleSeek}
+              onMouseDown={handleSeekDown}
+              onMouseUp={handleSeekUp}
+            />
+        </div>
+
+        <button onClick={toggleMuted}>
+          {config.muted ? 
+          <img src={volumex} alt="Muted audio" />
+          :
+          <img src={config.volume < 0.1 ? volume0 : config.volume < 0.7 ? volume1 : volume2} alt="Adjust audio" />
+          }
+          
         </button>
+
         {config.played}
+
         <div className="volume-slider">
           <input 
             type="range" 
@@ -106,6 +157,7 @@ const Footer = () => {
             onChange={handleVolume}
           />
         </div>
+
       </div>
     </div>
   )
