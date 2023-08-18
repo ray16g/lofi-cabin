@@ -5,6 +5,15 @@ import { Main, Footer, Topbar } from "./components"
 
 function App() {
 
+  const [title, setTitle] = useState({
+    title: "",
+    href: "",
+  })
+
+  function handleTitle(title, href) {
+    setTitle({title: title, href: href})
+  }
+
   return (
     <>
       <div className="container">
@@ -12,8 +21,8 @@ function App() {
         <div id="stars2"></div>
         <div id="stars3"></div>
         <Topbar/>
-        <Main/>
-        <Footer/>
+        <Main title={title.title} href={title.href}/>
+        <Footer handleTitle={handleTitle}/>
       </div>
     </>
     

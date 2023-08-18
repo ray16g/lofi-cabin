@@ -2,7 +2,7 @@ import { React, useState, useRef} from 'react'
 import ReactPlayer from 'react-player/youtube'
 import {add, music, pause, play, playlist, playNext, playPrev, volume0, volume1, volume2, volumex} from "../assets/icons"
 
-const Footer = () => {
+const Footer = ({handleTitle}) => {
 
   const [config, setConfig] = useState({
     playing: true,
@@ -60,16 +60,23 @@ const Footer = () => {
   }
 
   function onPlayerReady(e) {
-    e.player.player.player.setShuffle(true)
-    e.player.player.player.nextVideo()
+    console.log("READY")
+    e.getInternalPlayer().setShuffle(true)
+    e.getInternalPlayer().nextVideo()
+    e.getInternalPlayer().playVideo()
   }
 
   function handlePrevious() {
-    playerRef.current.player.player.player.previousVideo()
+    playerRef.current.getInternalPlayer().previousVideo()
   }
 
   function handleNext() {
-    playerRef.current.player.player.player.nextVideo()
+    playerRef.current.getInternalPlayer().nextVideo()
+  }
+
+  function handleBuffer() {
+    const player = playerRef.current.getInternalPlayer()
+    handleTitle(player.getVideoData().title, player.getVideoUrl())
   }
 
   return (
@@ -92,13 +99,13 @@ const Footer = () => {
         onStart={() => console.log('onStart')}
         onPlay={handlePlay}
         onPause={handlePause}
-        onBuffer={() => console.log('onBuffer')}
+        onBuffer={handleBuffer}
         onSeek={e => console.log('onSeek', e)}
         onError={e => console.log('onError', e)}
         onProgress={handleProgress}
         onDuration={handleDuration}
-
       />
+
       <div className="background-player">
         Ambience
         <button>
@@ -123,8 +130,9 @@ const Footer = () => {
           <img src={playNext} alt="Play next" />
         </button>
 
-        <div className="slider">
+        <div className="slider-container">
           <input 
+              className='range-slider'
               type="range" 
               min={0} 
               max={0.9999} 
@@ -133,6 +141,7 @@ const Footer = () => {
               onChange={handleSeek}
               onMouseDown={handleSeekDown}
               onMouseUp={handleSeekUp}
+              style={{"--range-progress" : `${(config.played)*100}%`}}
             />
         </div>
 
@@ -145,10 +154,9 @@ const Footer = () => {
           
         </button>
 
-        {config.played}
-
-        <div className="volume-slider">
+        <div className='volume-slider-container'>
           <input 
+            className='volume-slider'
             type="range" 
             min={0} 
             max={1.5} 
