@@ -60,7 +60,6 @@ const Footer = ({handleTitle}) => {
   }
 
   function onPlayerReady(e) {
-    console.log("READY")
     e.getInternalPlayer().setShuffle(true)
     e.getInternalPlayer().nextVideo()
     e.getInternalPlayer().playVideo()
@@ -114,6 +113,7 @@ const Footer = ({handleTitle}) => {
       </div>
 
       <div className="main-player">
+        <div className="media-player">
         <button onClick={handlePrevious}>
           <img src={playPrev} alt="Play previous" />
         </button>
@@ -144,17 +144,18 @@ const Footer = ({handleTitle}) => {
               style={{"--range-progress" : `${(config.played)*100}%`}}
             />
         </div>
+        </div>
+        
 
-        <button onClick={toggleMuted}>
-          {config.muted ? 
-          <img src={volumex} alt="Muted audio" />
-          :
-          <img src={config.volume < 0.1 ? volume0 : config.volume < 0.7 ? volume1 : volume2} alt="Adjust audio" />
-          }
-          
-        </button>
-
-        <div className='volume-slider-container'>
+        <div className='volume-container'>
+          <button onClick={toggleMuted}>
+            {config.muted ? 
+            <img src={volumex} alt="Muted audio" />
+            :
+            <img src={config.volume < 0.1 ? volume0 : config.volume < 0.4 ? volume1 : volume2} alt="Adjust audio" />
+            }
+            
+          </button>
           <input 
             className='volume-slider'
             type="range" 
@@ -165,7 +166,6 @@ const Footer = ({handleTitle}) => {
             onChange={handleVolume}
           />
         </div>
-
       </div>
     </div>
   )

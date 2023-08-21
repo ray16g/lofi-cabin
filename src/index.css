@@ -47,13 +47,26 @@
     height: auto;
 }
 
+.title {
+    font-family: 'VT323', monospace;
+    text-decoration: none;
+    margin-top: 0.6rem;
+    font-size: xx-large;
+    letter-spacing: 0.2rem;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
 .footer {
-    background-color: rgba(80, 80, 80, 0.5);
+    background-color: rgba(50, 88, 88, 0.5);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    height: 3.5rem;
+    height: 2.5rem;
     display: flex;
     flex-direction: row;
+    box-shadow: 0px -2px 3px 2px rgba(0, 0, 0, 0.05);
 }
 
 .background-player {
@@ -71,16 +84,43 @@
     align-items: center;
 }
 
+.media-player {
+    display: flex;
+    flex: 4;
+    align-items: center;
+    justify-content: center;
+}
+
+.media-player img {
+    margin-top: 0.125rem;
+    margin-right: 0.8rem;
+}
+.volume-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.volume-container img {
+    margin-right: 0.25rem;
+}
+
+.volume-container button {
+    height: 1.65rem;
+}
+
 button {
     background: transparent;
     border: none;
     padding: 0;
+    height: 2rem;
 }
 
 button:hover {
     cursor: pointer;
     transition: 0.1s;
-    filter: brightness(0.5)
+    filter: brightness(0.8)
 }
 
 button img {
@@ -95,7 +135,7 @@ input[type='range'] {
     appearance: none;
     outline: none;
     background: transparent;
-    
+    overflow: hidden;
     cursor: pointer;
     transition: 0.2s;
     opacity: 0.7;
@@ -145,14 +185,28 @@ input[type='range']::-webkit-slider-thumb {
     background-color: lightgray;
     height: var(--slider-height);
     width: var(--slider-height);
-    border-radius: 1rem;
+    
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 input[type='range']::-moz-range-thumb {
     border: none;
-    border-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 
     background-color: lightgray;
     height: var(--slider-height);
     width: var(--slider-height);
+}
+
+.volume-slider::-webkit-slider-thumb {
+    border-radius: 1rem;;
+}
+
+.volume-slider::-moz-range-thumb {
+    border-radius: 1rem;;
+}
+.range-slider {
+    width: 30rem;
 }
