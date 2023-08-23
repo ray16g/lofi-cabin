@@ -1,17 +1,21 @@
-import { React, useState, useRef} from 'react'
+import { React, useState, useRef, useEffect} from 'react'
 import ReactPlayer from 'react-player/youtube'
 import {add, music, pause, play, playlist, playNext, playPrev, volume0, volume1, volume2, volumex} from "../assets/icons"
 
 const Footer = ({handleTitle}) => {
 
   const [config, setConfig] = useState({
-    playing: true,
+    playing: false,
     seeking: false,
     volume: 0.5,
     played: 0,
     duration: 0,
     muted: false
   })
+
+  useEffect(() => {
+    setConfig({...config, playing: true})
+  }, []);
 
   const playerRef = useRef(null);
 
