@@ -1,8 +1,12 @@
-# React + Vite
+# lofi-cabin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lofi Cabin is a website where you can listen to endless lofi hip hop songs. Music will automatically start playing when you enter the website.
 
-Currently, two official plugins are available:
+This website was created using:
+- React
+- vitejs
+- [react-player](https://setamo-arts.tumblr.com/post/617812801357053952) library for music player
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Art credit:
+- [Setamo Arts](https://setamo-arts.tumblr.com/post/617812801357053952) for gif
+- [Lofi Records](https://www.youtube.com/playlist?list=PLofht4PTcKYnaH8w5olJCI-wUVxuoMHqM) for music
