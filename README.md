@@ -2,6 +2,8 @@
 
 Lofi Cabin is a website where you can listen to endless lofi hip hop songs. Music will automatically start playing when you enter the website.
 
+Visit the website at https://ray16g.github.io/lofi-cabin/
+
 This website was created using:
 - React
 - vitejs
