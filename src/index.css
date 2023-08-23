@@ -78,7 +78,7 @@
 
 .media-player {
     display: flex;
-    flex: 10;
+    flex: 5;
     align-items: center;
     justify-content: center;
 }
