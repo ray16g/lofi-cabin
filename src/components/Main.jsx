@@ -10,9 +10,6 @@ const Main = ({title, href}) => {
       :
       <div className="title">Loading...</div>
       }
-
-      
-
     </div>
     
   )

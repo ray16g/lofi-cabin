@@ -90,7 +90,7 @@ const Footer = ({handleTitle}) => {
         playing={config.playing}
         controls={true}
         light={false}
-        loop={false}
+        loop={true}
         playbackRate={1}
         volume={config.volume}
         muted={config.muted}
@@ -104,13 +104,6 @@ const Footer = ({handleTitle}) => {
         onProgress={handleProgress}
         onDuration={handleDuration}
       />
-
-      <div className="background-player">
-        Ambience
-        <button>
-          <img src={playlist} alt="Ambience playlist" />
-        </button>
-      </div>
 
       <div className="main-player">
         <div className="media-player">
