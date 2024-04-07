@@ -89,7 +89,7 @@ const Footer = ({handleTitle}) => {
         className='react-player'
         width='0'
         height='0'
-        url={"https://www.youtube.com/watch?v=WTsmIbNku5g&list=PLOzDu-MXXLliO9fBNZOQTBDddoA3FzZUo"}
+        url={"https://www.youtube.com/playlist?list=PLOzDu-MXXLliO9fBNZOQTBDddoA3FzZUo"}
         pip={false}
         playing={config.playing}
         controls={true}
